@@ -1,6 +1,6 @@
 {
   "name": "zeit-api-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Api client for Zeit Now integrations based on @zeit/integration-utils",
   "author": "Luka Kakia",
   "license": "MIT",
@@ -8,9 +8,7 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
@@ -23,8 +21,9 @@
     "rollup-plugin-node-resolve": "^4.2.3"
   },
   "scripts": {
-    "now-build":"yarn docs",
-    "docs":" documentation build src/** -f html -o docs",
+    "now-build": "yarn docs",
+    "prepublish": "yarn run build",
+    "docs": " documentation build src/** -f html -o docs",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test-integration": "jest --watch int.test",
