@@ -6,7 +6,7 @@
 
 Originally created for participants in the inaugaural [Zeit Integrations Hackathon](https://zeit.co/hackathon). 
 
-Currently supports a small subset of the Now API, contributions(tests/documentation/endpoint support) welcome and appreciated.
+Currently supports a small subset of the Now API, contributions(tests/documentation/endpoint support) welcome and appreciated. Feel free to contact `Luka Kakia` on the hackathon Slack with any questions.
 
 Support for usage outside of a Zeit integration "coming soon".
 
