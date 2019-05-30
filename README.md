@@ -1,13 +1,14 @@
 # zeit-api-client
 
-> API client for Zeit Now integrations based on @zeit/integration-utils
+[![NPM](https://img.shields.io/npm/v/zeit-api-client.svg)](https://www.npmjs.com/package/zeit-api-client)
 
+> API client for Zeit Now integrations based on @zeit/integration-utils
 
 Originally created for participants in the inaugaural [Zeit Integrations Hackathon](https://zeit.co/hackathon). 
 
-Support for usage outside of a Zeit integration "coming soon"
+Currently supports a small subset of the Now API, contributions(tests/documentation/endpoint support) welcome and appreciated.
 
-[![NPM](https://img.shields.io/npm/v/zeit-api-client.svg)](https://www.npmjs.com/package/zeit-api-client)
+Support for usage outside of a Zeit integration "coming soon".
 
 ## Install
 
