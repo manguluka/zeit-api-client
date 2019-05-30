@@ -107,7 +107,7 @@ class ZeitIUApiClient {
 		const res = await this.client.fetch(endpointPath, {});
 		if (res.status !== 200) {
 			throw new Error(
-				`Failed ZEIT API call. path: ${path} status: ${
+				`Failed ZEIT API call. path: ${endpointPath} status: ${
 					res.status
 				} error: ${await res.text()}`
 			);
