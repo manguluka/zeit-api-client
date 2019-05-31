@@ -4,7 +4,7 @@
 
 > API client for Zeit Now integrations based on @zeit/integration-utils
 
-Originally created for participants in the inaugaural [Zeit Integrations Hackathon](https://zeit.co/hackathon). 
+Originally created for participants in the inaugural [Zeit Integrations Hackathon](https://zeit.co/hackathon). 
 
 Currently supports a small subset of the Now API, contributions(tests/documentation/endpoint support) welcome and appreciated. Feel free to contact `Luka Kakia` on the hackathon Slack with any questions.
 
