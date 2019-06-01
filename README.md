@@ -10,6 +10,11 @@ Currently supports a small subset of the Now API, contributions(tests/documentat
 
 Support for usage outside of a Zeit integration "coming soon".
 
+**Related Links**
+- [https://github.com/manguluka/zeit-integration-starter-offline](https://github.com/manguluka/zeit-integration-starter-offline) Offline-first project starter and component showcase for Zeit Integrations
+- [https://github.com/manguluka/zeit-integration-toolbox](https://github.com/manguluka/zeit-integration-toolbox) Tools to facilitate rapid development of Zeit Integrations
+- [https://github.com/zeit/awesome-zeit-integrations](https://github.com/zeit/awesome-zeit-integrations) This list aggregates the best resources for ZEIT Integrations.
+
 ## Install
 
 ```bash
