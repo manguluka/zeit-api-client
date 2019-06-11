@@ -1,6 +1,6 @@
-import { ZeitApiClient } from "../src";
-const zeitApi = new ZeitApiClient({token:process.env.TEST_TOKEN});
-let testDeploymentObject
+import ZeitApiClient from "../src";
+const zeitApi = new ZeitApiClient({ token: process.env.TEST_TOKEN });
+let testDeploymentObject;
 jest.setTimeout(30000);
 //Cache deployments to save time
 // const testDeploymentObject = process.env.TEST_DEPLOYMENT_OBJECT;
@@ -26,18 +26,24 @@ describe("Deployments:", () => {
 	describe("getDeployment()", () => {
 		it("should return a correct deployment", async () => {
 			const deploymentId = deploymentsList[0].uid;
-			// console.log(deploymentId);
-			const deployment = await zeitApi.getDeployment({ deploymentId });
-			expect(deployment.id).toBe(deploymentId);
+			console.log(deploymentId);
+			try {
+				const deployment = await zeitApi.getDeployment(
+					deploymentId
+				);
+				expect(deployment.id).toBe(deploymentId);
+			} catch (e) {
+				console.log(e)
+			}
 		});
 	});
 	describe("getDeploymentFiles()", () => {
 		it("should return an array of deployment files", async () => {
 			const deploymentId = deploymentsList[0].uid;
 			// console.log(deploymentId);
-			const deploymentFiles = await zeitApi.getDeploymentFiles({
+			const deploymentFiles = await zeitApi.getDeploymentFiles(
 				deploymentId
-			});
+			);
 			expect(deploymentFiles).toBeInstanceOf(Array);
 		});
 	});
@@ -94,9 +100,9 @@ describe("User", () => {
 describe("Logs", () => {
 	it("should retreive correct logs.", async () => {
 		const deployment = deploymentsList[0];
-		let logs = await zeitApi.getLogs(deployment.uid)
+		let logs = await zeitApi.getLogs(deployment.uid);
 		// console.log(logs)
 		expect(logs).toBeTruthy();
 		// expect(logs[0].payload.deploymentId).toBe(deployment.uid);
-	});															
+	});
 });

@@ -93,7 +93,7 @@ class ZeitApiClient {
 	 * @param {String} options.meta-[KEY] Filter deployments by the given meta key value pairs. e.g., `meta-githubDeployment=1`
 	 */
 	async getDeployments(options) {
-		const queryStr = getQueryStr(query);
+		const queryStr = getQueryStr(options);
 		const endpointPath = `/v4/now/deployments${queryStr}`;
 		const res = await this.client.get(endpointPath);
 		return res.data.deployments;
@@ -109,6 +109,7 @@ class ZeitApiClient {
 	async getDeployment(deploymentId) {
 		const endpointPath = `/v9/now/deployments/${deploymentId}`;
 		const res = await this.client.get(endpointPath);
+		console.log(res)
 		return res.data;
 	}
 	/**
@@ -166,3 +167,4 @@ class ZeitApiClient {
 	}
 }
 
+export default ZeitApiClient
