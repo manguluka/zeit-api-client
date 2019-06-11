@@ -106,3 +106,12 @@ describe("Logs", () => {
 		// expect(logs[0].payload.deploymentId).toBe(deployment.uid);
 	});
 });
+
+describe("Aliases", () => {
+	describe("getAliases(options)", () => {
+	it("should retreive all aliases", async () => {
+		let aliases = await zeitApi.getAliases();
+		expect(aliases).toBeTruthy();
+	});
+});
+});

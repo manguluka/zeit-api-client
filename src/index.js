@@ -165,6 +165,23 @@ class ZeitApiClient {
 		const res = await this.client.get(endpointPath);
 		return res.data;
 	}
+	//Aliases
+	/**
+	 * Fetch all aliases
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/aliases/list-all-the-aliases
+	 *
+	 * @param {Object} options
+	 * @param {Number} options.limit Maximum number of aliases to list from a request. (default: 5, max: 100)
+	 * @param {Timestamp} options.from Get the aliases created after this Date timestamp. (default: current time)
+	 * @param {String} options.projectId Filter aliases from the given `projectId`
+	 */
+	async getAliases(options) {
+		const endpointPath = `/v2/now/aliases`;
+		const res = await this.client.get(endpointPath);
+		return res.data;
+	}
 }
 
 export default ZeitApiClient
