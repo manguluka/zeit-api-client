@@ -1,11 +1,15 @@
 import axios from "axios";
 const getQueryStr = obj => {
-	const queryStr = Object.keys(obj)
-		.filter(k => obj[k])
-		.map(k => `${k}=${obj[k]}`)
-		.join("&");
+	if(obj){
+		const queryStr = Object.keys(obj)
+			.filter(k => obj[k])
+			.map(k => `${k}=${obj[k]}`)
+			.join("&");
 
-	return queryStr ? `?${queryStr}` : "";
+		return queryStr ? `?${queryStr}` : "";
+	} else {
+		return ""
+	}
 };
 
 /**
