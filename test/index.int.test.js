@@ -108,15 +108,43 @@ describe("Logs", () => {
 describe("Aliases", () => {
 	describe("getAliases(options)", () => {
 		it("should retreive all aliases", async () => {
-			let aliases = await zeitApi.getAliases();
-			expect(aliases).toBeTruthy();
+			let res = await zeitApi.getAliases();
+			expect(res).toBeTruthy();
 		});
 	});
-		describe("getDeploymentAliases()", () => {
+	describe("getDeploymentAliases()", () => {
 		it("should retreive aliases for correct deployment", async () => {
-			let deploymentId = deploymentsList[0].uid
-			let aliases = await zeitApi.getDeploymentAliases();
-			expect(aliases[0].deploymentId).toBe(deploymentId);
+			let deploymentId = deploymentsList[0].uid;
+			let res = await zeitApi.getDeploymentAliases(deploymentId);
+			expect(res[0].uid).toBeTruthy();
+		});
+	});
+});
+
+describe("Secrets", () => {
+	describe("getSecrets()", () => {
+		it("should retreive all secrets", async () => {
+			let res = await zeitApi.getSecrets();
+			expect(res).toBeTruthy();
+		});
+	});
+});
+
+describe("Teams", () => {
+	describe("getTeams()", () => {
+		it("should retreive all teams", async () => {
+			let res = await zeitApi.getTeams();
+			expect(res).toBeTruthy();
+		});
+	});
+});
+
+describe("Projects", () => {
+	describe("getProjects(options)", () => {
+		it("should retreive all projects", async () => {
+			let res = await zeitApi.getProjects();
+			console.log(res)
+			expect(res).toBeTruthy();
 		});
 	});
 });

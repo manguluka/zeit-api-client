@@ -46,9 +46,7 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
 });
 ```
 
-
-
-## Endpoints implemented
+## Endpoints implemented:
 ### User
 - [x] getUser()
 
@@ -63,7 +61,7 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
 ### Logs
 - [x] getLogs()
 
-### Integration Metadat
+### Integration Metadata
 ### Domains
 ### DNS
 ### Certificates
@@ -72,8 +70,14 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
 - [x] getDeploymentAliases()
 
 ### Secrets
+- [x] getSecrets()
+
 ### Teams
+- [x] getTeams()
+
 ### Projects
+- [x] getProjects(options)
+
 ### Authentication
 ### OAuth2
 ### Webhooks

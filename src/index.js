@@ -113,7 +113,6 @@ class ZeitApiClient {
 	async getDeployment(deploymentId) {
 		const endpointPath = `/v9/now/deployments/${deploymentId}`;
 		const res = await this.client.get(endpointPath);
-		console.log(res)
 		return res.data;
 	}
 	/**
@@ -196,6 +195,51 @@ class ZeitApiClient {
 	 */
 	async getDeploymentAliases(deploymentId) {
 		const endpointPath = `/v2/now/deployments/${deploymentId}/aliases`;
+		const res = await this.client.get(endpointPath);
+		return res.data.aliases;
+	}
+	//Secrets
+	/**
+	 * Fetch all secrets
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/secrets/list-all-the-secrets
+	 *
+	 */
+	async getSecrets() {
+		const endpointPath = `/v2/now/secrets`;
+		const res = await this.client.get(endpointPath);
+		return res.data.secrets;
+	}
+	//Teams
+	/**
+	 * Fetch all teams
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/teams/list-all-your-teams
+	 *
+	 */
+	async getTeams() {
+		const endpointPath = `/v2/teams`;
+		const res = await this.client.get(endpointPath);
+		return res.data.teams;
+	}
+	//Projects
+	/**
+	 * Fetch all projects
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/projects/get-all-projects
+	 *
+	 * @param {Object} options
+	 * @param {Number} options.limit Limit the number of projects returned
+	 * @param {Timestamp} options.from The updatedAt point where the list should start.
+	 * @param {String} options.search Search projects by the name field.
+
+	 */
+	async getProjects(options) {
+		const queryStr = getQueryStr(options);
+		const endpointPath = `/v1/projects/list${queryStr}`;
 		const res = await this.client.get(endpointPath);
 		return res.data;
 	}
