@@ -49,7 +49,7 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
 
 
 ## Endpoints implemented
-### USer
+### User
 - [x] getUser()
 
 ### Deployments
