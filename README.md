@@ -107,13 +107,21 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
         -   [Parameters][18]
     -   [getLogs][19]
         -   [Parameters][20]
+    -   [getAliases][21]
+        -   [Parameters][22]
+    -   [getDeploymentAliases][23]
+        -   [Parameters][24]
+    -   [getSecrets][25]
+    -   [getTeams][26]
+    -   [getProjects][27]
+        -   [Parameters][28]
 
 ## ZeitApiClient
 
 ### Parameters
 
--   `options` **[Object][21]** 
-    -   `options.token` **[Object][21]** Api token
+-   `options` **[Object][29]** 
+    -   `options.token` **[Object][29]** Api token
 
 ### Examples
 
@@ -128,7 +136,7 @@ const zeitApi = new ZeitApiClient({token:ZEIT_TOKEN})
 Get the authenticated user
 
 Official Documentation:
-[https://zeit.co/docs/api#endpoints/user][22]
+[https://zeit.co/docs/api#endpoints/user][30]
 
 #### Examples
 
@@ -141,23 +149,22 @@ const user = zeitApi.getUser()
 Create a new deployment with all the required and intended data.
 
 Official Documentation:
-[https://zeit.co/docs/api#endpoints/deployments/list-deployments][23]
+[https://zeit.co/docs/api#endpoints/deployments/list-deployments][31]
 
 #### Parameters
 
--   `data` **[Object][21]** 
-    -   `data.name` **[String][24]** A string with the project name used in the deployment URL. The name string has a max length of 52 characters.
-    -   `data.files` **[Array][25]** A list of objects with the files to be deployed.
-    -   `data.version` **[Number][26]** The version of Now Platform to use. Must have the value of 2.
-    -   `data.meta` **[Object][21]** An object containing the deployment's metadata. Multiple key-value pairs can be attached to a deployment. For example, { "foo": "bar" }.
-    -   `data.env` **[Object][21]** An object containing the deployment's environment variable names and values. Secrets can be referenced by prefixing the value with @.
-    -   `data.builds` **[Array][25]** A list of Build objects used to build sources in a deployment. For example, {[{ "src": "*.php", "use": "@now/php" }]}.
-    -   `data.routes` **[Array][25]** A list of routes objects used to rewrite paths to point towards other internal or external paths. For example; [{ "src": "/docs", "dest": "https://docs.zeit.co" }].
-    -   `data.regions` **[Array][25]** An array of the regions the deployment should be deployed to. For example, ["sfo", "bru"].
-    -   `data.public` **[Boolean][27]** Whether a deployment's source and logs are available publicly.
-    -   `data.target` **[String][24]** Either not defined, staging or production. If staging, a staging alias in the format <project>.<team>.now.sh will be assigned. If production, any aliases defined in alias will be assigned.
-    -   `data.alias` **[Array][25]** Aliases that will get assigned when the deployment is READY and the target is production. The client needs to make a GET request to this API to ensure the assignment.
-
+-   `data` **[Object][29]** 
+    -   `data.name` **[String][32]** A string with the project name used in the deployment URL. The name string has a max length of 52 characters.
+    -   `data.files` **[Array][33]** A list of objects with the files to be deployed.
+    -   `data.version` **[Number][34]** The version of Now Platform to use. Must have the value of 2.
+    -   `data.meta` **[Object][29]** An object containing the deployment's metadata. Multiple key-value pairs can be attached to a deployment. For example, { "foo": "bar" }.
+    -   `data.env` **[Object][29]** An object containing the deployment's environment variable names and values. Secrets can be referenced by prefixing the value with @.
+    -   `data.builds` **[Array][33]** A list of Build objects used to build sources in a deployment. For example, {[{ "src": "*.php", "use": "@now/php" }]}.
+    -   `data.routes` **[Array][33]** A list of routes objects used to rewrite paths to point towards other internal or external paths. For example; [{ "src": "/docs", "dest": "https://docs.zeit.co" }].
+    -   `data.regions` **[Array][33]** An array of the regions the deployment should be deployed to. For example, ["sfo", "bru"].
+    -   `data.public` **[Boolean][35]** Whether a deployment's source and logs are available publicly.
+    -   `data.target` **[String][32]** Either not defined, staging or production. If staging, a staging alias in the format <project>.<team>.now.sh will be assigned. If production, any aliases defined in alias will be assigned.
+    -   `data.alias` **[Array][33]** Aliases that will get assigned when the deployment is READY and the target is production. The client needs to make a GET request to this API to ensure the assignment.
 
 #### Examples
 
@@ -180,48 +187,48 @@ const newDeployment = zeitApi.createDeployment(deploymentData)
 Fetch all deployments
 
 Official Documentation:
-[https://zeit.co/docs/api#endpoints/deployments/list-deployments][23]
+[https://zeit.co/docs/api#endpoints/deployments/list-deployments][31]
 
 #### Parameters
 
--   `options` **[Object][21]** 
-    -   `options.limit` **[Number][26]** Maximum number of deployments to list from a request. (default: 5, max: 100)
+-   `options` **[Object][29]** 
+    -   `options.limit` **[Number][34]** Maximum number of deployments to list from a request. (default: 5, max: 100)
     -   `options.from` **Timestamp** Get the deployment created after this Date timestamp. (default: current time)
-    -   `options.projectId` **[String][24]** Filter deployments from the given `projectId`
-    -   `options.meta-null` **[String][24]** [KEY] Filter deployments by the given meta key value pairs. e.g., `meta-githubDeployment=1`
+    -   `options.projectId` **[String][32]** Filter deployments from the given `projectId`
+    -   `options.meta-null` **[String][32]** [KEY] Filter deployments by the given meta key value pairs. e.g., `meta-githubDeployment=1`
 
 ### getDeployment
 
 Fetch single deployment by id
 
 Official Documentation:
-[https://zeit.co/docs/api#endpoints/deployments/get-a-single-deployment][28]
+[https://zeit.co/docs/api#endpoints/deployments/get-a-single-deployment][36]
 
 #### Parameters
 
--   `deploymentId` **[String][24]** deployment id
+-   `deploymentId` **[String][32]** deployment id
 
 ### getDeploymentFiles
 
 Fetch a list of deployments files
 
 Official Documentation:
-[https://zeit.co/docs/api#endpoints/deployments/list-deployment-files][29]
+[https://zeit.co/docs/api#endpoints/deployments/list-deployment-files][37]
 
 #### Parameters
 
--   `deploymentId` **[String][24]** deployment id
+-   `deploymentId` **[String][32]** deployment id
 
 ### getDeploymentFile
 
 Fetch a single file by deployment and file id
 
 Official Documentation:
-[https://zeit.co/docs/api#endpoints/deployments/list-deployment-files][29]
+[https://zeit.co/docs/api#endpoints/deployments/list-deployment-files][37]
 
 #### Parameters
 
--   `deploymentId` **[String][24]** deployment id
+-   `deploymentId` **[String][32]** deployment id
 -   `fileId`  
 
 ### deleteDeployment
@@ -229,22 +236,75 @@ Official Documentation:
 Delete a single deployment by id
 
 Official Documentation:
-[https://zeit.co/docs/api#endpoints/deployments/delete-a-deployment][30]
+[https://zeit.co/docs/api#endpoints/deployments/delete-a-deployment][38]
 
 #### Parameters
 
--   `deploymentId` **[String][24]** deployment id
+-   `deploymentId` **[String][32]** deployment id
 
 ### getLogs
 
 Get the logs of a deployment by its ID.
 
 Official Documentation:
-[https://zeit.co/docs/api#endpoints/logs][31]
+[https://zeit.co/docs/api#endpoints/logs][39]
 
 #### Parameters
 
--   `deploymentId` **[String][24]** deployment id
+-   `deploymentId` **[String][32]** deployment id
+
+### getAliases
+
+Fetch all aliases
+
+Official Documentation:
+[https://zeit.co/docs/api#endpoints/aliases/list-all-the-aliases][40]
+
+#### Parameters
+
+-   `options` **[Object][29]** 
+    -   `options.limit` **[Number][34]** Maximum number of aliases to list from a request. (default: 5, max: 100)
+    -   `options.from` **Timestamp** Get the aliases created after this Date timestamp. (default: current time)
+    -   `options.projectId` **[String][32]** Filter aliases from the given `projectId`
+
+### getDeploymentAliases
+
+Fetch a deployment's aliases
+
+Official Documentation:
+[https://zeit.co/docs/api#endpoints/aliases/list-aliases-by-deployment][41]
+
+#### Parameters
+
+-   `deploymentId` **[String][32]** Id of deployment to fetch aliases from
+
+### getSecrets
+
+Fetch all secrets
+
+Official Documentation:
+[https://zeit.co/docs/api#endpoints/secrets/list-all-the-secrets][42]
+
+### getTeams
+
+Fetch all teams
+
+Official Documentation:
+[https://zeit.co/docs/api#endpoints/teams/list-all-your-teams][43]
+
+### getProjects
+
+Fetch all projects
+
+Official Documentation:
+[https://zeit.co/docs/api#endpoints/projects/get-all-projects][44]
+
+#### Parameters
+
+-   `options` **[Object][29]** 
+    -   `options.limit` **[Number][34]** Limit the number of projects returned
+    -   `options.from` **Timestamp** The updatedAt point where the list should start.
+    -   `options.search` **[String][32]** Search projects by the name field.
 
 [1]: #zeitapiclient
 
@@ -286,27 +346,53 @@ Official Documentation:
 
 [20]: #parameters-7
 
-[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[21]: #getaliases
 
-[22]: https://zeit.co/docs/api#endpoints/user
+[22]: #parameters-8
 
-[23]: https://zeit.co/docs/api#endpoints/deployments/list-deployments
+[23]: #getdeploymentaliases
 
-[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[24]: #parameters-9
 
-[25]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[25]: #getsecrets
 
-[26]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[26]: #getteams
 
-[27]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[27]: #getprojects
 
-[28]: https://zeit.co/docs/api#endpoints/deployments/get-a-single-deployment
+[28]: #parameters-10
 
-[29]: https://zeit.co/docs/api#endpoints/deployments/list-deployment-files
+[29]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[30]: https://zeit.co/docs/api#endpoints/deployments/delete-a-deployment
+[30]: https://zeit.co/docs/api#endpoints/user
 
-[31]: https://zeit.co/docs/api#endpoints/logs
+[31]: https://zeit.co/docs/api#endpoints/deployments/list-deployments
+
+[32]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[33]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[34]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[35]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[36]: https://zeit.co/docs/api#endpoints/deployments/get-a-single-deployment
+
+[37]: https://zeit.co/docs/api#endpoints/deployments/list-deployment-files
+
+[38]: https://zeit.co/docs/api#endpoints/deployments/delete-a-deployment
+
+[39]: https://zeit.co/docs/api#endpoints/logs
+
+[40]: https://zeit.co/docs/api#endpoints/aliases/list-all-the-aliases
+
+[41]: https://zeit.co/docs/api#endpoints/aliases/list-aliases-by-deployment
+
+[42]: https://zeit.co/docs/api#endpoints/secrets/list-all-the-secrets
+
+[43]: https://zeit.co/docs/api#endpoints/teams/list-all-your-teams
+
+[44]: https://zeit.co/docs/api#endpoints/projects/get-all-projects
 
 
 ## License
