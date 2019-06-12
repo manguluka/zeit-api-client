@@ -1,6 +1,6 @@
 {
   "name": "zeit-api-client",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Api client for Zeit Now integrations based on @zeit/integration-utils",
   "author": "Luka Kakia",
   "license": "MIT",
