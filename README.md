@@ -54,7 +54,7 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
 
 ### Deployments
 - [x] createDeployment()
-- [x] getDeployments()
+- [x] getDeployments(options)
 - [x] getDeployment(deploymentId)
 - [x] getDeploymentFiles(deploymentId)
 - [x] getDeploymentFile(deploymentId,fileId)
@@ -68,6 +68,9 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
 ### DNS
 ### Certificates
 ### Aliases
+- [x] getAliases(options)
+- [x] getDeploymentAliases()
+
 ### Secrets
 ### Teams
 ### Projects

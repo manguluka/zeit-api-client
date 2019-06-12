@@ -182,6 +182,19 @@ class ZeitApiClient {
 		const res = await this.client.get(endpointPath);
 		return res.data;
 	}
+		/**
+	 * Fetch a deployment's aliases
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/aliases/list-aliases-by-deployment
+	 *
+	 * @param {String} deploymentId Id of deployment to fetch aliases from 
+	 */
+	async getDeploymentAliases(deploymentId) {
+		const endpointPath = `/v2/now/deployments/${deploymentId}/aliases`;
+		const res = await this.client.get(endpointPath);
+		return res.data;
+	}
 }
 
 export default ZeitApiClient

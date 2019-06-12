@@ -28,12 +28,10 @@ describe("Deployments:", () => {
 			const deploymentId = deploymentsList[0].uid;
 			console.log(deploymentId);
 			try {
-				const deployment = await zeitApi.getDeployment(
-					deploymentId
-				);
+				const deployment = await zeitApi.getDeployment(deploymentId);
 				expect(deployment.id).toBe(deploymentId);
 			} catch (e) {
-				console.log(e)
+				console.log(e);
 			}
 		});
 	});
@@ -109,9 +107,16 @@ describe("Logs", () => {
 
 describe("Aliases", () => {
 	describe("getAliases(options)", () => {
-	it("should retreive all aliases", async () => {
-		let aliases = await zeitApi.getAliases();
-		expect(aliases).toBeTruthy();
+		it("should retreive all aliases", async () => {
+			let aliases = await zeitApi.getAliases();
+			expect(aliases).toBeTruthy();
+		});
 	});
-});
+		describe("getDeploymentAliases()", () => {
+		it("should retreive aliases for correct deployment", async () => {
+			let deploymentId = deploymentsList[0].uid
+			let aliases = await zeitApi.getDeploymentAliases();
+			expect(aliases[0].deploymentId).toBe(deploymentId);
+		});
+	});
 });
