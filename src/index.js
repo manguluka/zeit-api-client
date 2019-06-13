@@ -1,6 +1,8 @@
 import axios from "axios";
+import sha1 from "simple-sha1";
+import fs from "fs";
 const getQueryStr = obj => {
-	if(obj){
+	if (obj) {
 		const queryStr = Object.keys(obj)
 			.filter(k => obj[k])
 			.map(k => `${k}=${obj[k]}`)
@@ -8,7 +10,7 @@ const getQueryStr = obj => {
 
 		return queryStr ? `?${queryStr}` : "";
 	} else {
-		return ""
+		return "";
 	}
 };
 
@@ -83,6 +85,40 @@ class ZeitApiClient {
 		const endpointPath = `/v9/now/deployments/`;
 		const res = await this.client.post(endpointPath, data);
 		return res.data;
+	}
+	/**
+	 * Uploads a file and returns its size and sha if successful (currently only works in node). Returned object can be used with `createDeployment()` files section
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/deployments/upload-deployment-files
+	 *
+	 * @param {Object} options
+	 * @param {String} options.filePath Path pf file to upload
+	 *
+	 * @returns {Object} fileData 
+	 * @returns {String} fileData.sha sha1 hash of uploaded file
+	 * @returns {String} fileData.size size in bytes of uploaded file
+	 */
+	async uploadFile(options) {
+		const { filePath } = options;
+		if (options.filePath) {
+			const fileData = fs.readFileSync(filePath);
+			const fileSize = fs.statSync(filePath).size;
+			const fileHash = sha1.sync(fileData);
+
+			const queryStr = getQueryStr(options);
+
+			const endpointPath = `/v2/now/files`;
+			const res = await this.client.post(endpointPath, fileData, {
+				headers: {
+					"Content-Length": fileSize,
+					"x-now-digest": fileHash
+				}
+			});
+			if (res.status === 200) {
+				return { sha: fileHash, size: fileSize };
+			}
+		} 
 	}
 	/**
 	 * Fetch all deployments
@@ -185,13 +221,13 @@ class ZeitApiClient {
 		const res = await this.client.get(endpointPath);
 		return res.data;
 	}
-		/**
+	/**
 	 * Fetch a deployment's aliases
 	 *
 	 * Official Documentation:
 	 * https://zeit.co/docs/api#endpoints/aliases/list-aliases-by-deployment
 	 *
-	 * @param {String} deploymentId Id of deployment to fetch aliases from 
+	 * @param {String} deploymentId Id of deployment to fetch aliases from
 	 */
 	async getDeploymentAliases(deploymentId) {
 		const endpointPath = `/v2/now/deployments/${deploymentId}/aliases`;
@@ -245,4 +281,4 @@ class ZeitApiClient {
 	}
 }
 
-export default ZeitApiClient
+export default ZeitApiClient;

@@ -1,4 +1,5 @@
 import ZeitApiClient from "../src";
+import path from "path";
 const zeitApi = new ZeitApiClient({ token: process.env.TEST_TOKEN });
 let testDeploymentObject;
 jest.setTimeout(30000);
@@ -26,12 +27,10 @@ describe("Deployments:", () => {
 	describe("getDeployment()", () => {
 		it("should return a correct deployment", async () => {
 			const deploymentId = deploymentsList[0].uid;
-			console.log(deploymentId);
 			try {
 				const deployment = await zeitApi.getDeployment(deploymentId);
 				expect(deployment.id).toBe(deploymentId);
 			} catch (e) {
-				console.log(e);
 			}
 		});
 	});
@@ -62,6 +61,15 @@ describe("Deployments:", () => {
 			);
 			// console.log(newDeploymentData);
 			expect(newDeploymentData.name).toBe(deploymentData.name);
+		});
+	});
+	describe("uploadFile()", () => {
+		it("should upload a file and return its sha and filesize", async () => {
+			let newFile = await zeitApi.uploadFile({
+				filePath: path.join(__dirname, "test-file.html")
+			});
+			expect(newFile).toHaveProperty("sha");
+			expect(newFile).toHaveProperty("size");
 		});
 	});
 	describe("deleteDeployment()", () => {
@@ -143,7 +151,6 @@ describe("Projects", () => {
 	describe("getProjects(options)", () => {
 		it("should retreive all projects", async () => {
 			let res = await zeitApi.getProjects();
-			console.log(res)
 			expect(res).toBeTruthy();
 		});
 	});
