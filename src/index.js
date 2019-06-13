@@ -279,6 +279,20 @@ class ZeitApiClient {
 		const res = await this.client.get(endpointPath);
 		return res.data;
 	}
+	//Domains
+	/**
+	 * Fetch all domains
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/domains/list-all-the-domains
+	 *
+	 */
+	async getDomains(options) {
+		const queryStr = getQueryStr(options);
+		const endpointPath = `/v4/domains`;
+		const res = await this.client.get(endpointPath);
+		return res.data.domains;
+	}
 }
 
 export default ZeitApiClient;

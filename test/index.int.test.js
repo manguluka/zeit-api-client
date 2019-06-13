@@ -113,6 +113,16 @@ describe("Logs", () => {
 	});
 });
 
+
+describe("Domains", () => {
+	describe("getDomains()", () => {
+		it("should retreive all domains", async () => {
+			let res = await zeitApi.getDomains()
+			expect(Array.isArray(res)).toBeTruthy()
+		});
+	});
+});
+
 describe("Aliases", () => {
 	describe("getAliases(options)", () => {
 		it("should retreive all aliases", async () => {
