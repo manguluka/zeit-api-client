@@ -7,7 +7,7 @@ export default [
 	{
 		input: 'src/index.js',
 		output: {
-			name: 'index',
+			name: 'ZeitApiClient',
 			file: pkg.browser,
 			format: 'umd'
 		},
