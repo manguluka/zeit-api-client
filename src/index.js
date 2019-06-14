@@ -293,6 +293,33 @@ class ZeitApiClient {
 		const res = await this.client.get(endpointPath);
 		return res.data.domains;
 	}
+	//Certificates
+	/**
+	 * Fetch all certificates
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/certificates/list-all-the-certificates
+	 *
+	 */
+	async getCertificates(options) {
+		const queryStr = getQueryStr(options);
+		const endpointPath = `/v3/now/certs`;
+		const res = await this.client.get(endpointPath);
+		return res.data.certs;
+	}
+	//Webhooks
+	/**
+	 * Fetch all webhooks
+	 *
+	 * Official Documentation:
+	 * https://zeit.co/docs/api#endpoints/webhooks/list-all-webhooks
+	 *
+	 */
+	async getWebhooks() {
+		const endpointPath = `/v1/integrations/webhooks`;
+		const res = await this.client.get(endpointPath);
+		return res.data;
+	}
 }
 
 export default ZeitApiClient;

@@ -123,6 +123,24 @@ describe("Domains", () => {
 	});
 });
 
+describe("Certificates", () => {
+	describe("getCertificates()", () => {
+		it("should retreive all certificates", async () => {
+			let res = await zeitApi.getCertificates()
+			expect(Array.isArray(res)).toBeTruthy()
+		});
+	});
+});
+
+describe("Webhooks", () => {
+	describe("getWebhooks()", () => {
+		it("should retreive all webhooks", async () => {
+			let res = await zeitApi.getWebhooks()
+			expect(Array.isArray(res)).toBeTruthy()
+		});
+	});
+});
+
 describe("Aliases", () => {
 	describe("getAliases(options)", () => {
 		it("should retreive all aliases", async () => {
